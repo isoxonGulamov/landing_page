@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+body{
+  overflow: hidden;
+
+}
+ .img-box{
+  background-image: url(../public/main-img.jpg);
+  width: 100%;
+  height: 100vh;
+  display: inline-block;
+  background-size: cover;
+  
+} 
+
+
+#tsparticles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    z-index: 0; /* if you use -1 you have to set to `"window"` the interactivity.detectsOn property */
+}
+
+
+.bg-NotFound{
+  background-image: url(../public/404.png);
+    display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  
+
+}
