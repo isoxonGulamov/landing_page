@@ -9,18 +9,19 @@ import rocket from "@/public/rocket.svg";
 import "rsuite/dist/rsuite.css";
 import { Drawer, ButtonToolbar, Button, Placeholder } from "rsuite";
 import DrawerComponent from "./components/drawer";
+import confetti from "canvas-confetti";
 
-
+import Link from "next/link";
 export default function Home() {
-    const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   return (
     <main className="flex min-h-screen bg-black items-center justify-between ">
       <div className=" w-full   max-sm:pl-[12px] pl-[43px] relative">
-        <div className="relative  ">
+        <div className="relative">
           <ParticlesComponent />
         </div>
-        <div className="top-10 fixed">
+        <div className="top-10 fixed flex items-center w-[50%]  justify-between">
           <Image
             className="w-[150px] h-[50px] max-sm:w-[100px] max-sm:h-[30px]"
             src={lightLogo}
@@ -28,23 +29,24 @@ export default function Home() {
           />
         </div>
         <div className="w-full h-full">
-          <div className="max-sm:absolute z-50 max-[485px]:right-[-69%] max-[395px]:right-[-75%] max-sm:right-[-50%] max-sm:top-[-90px]  mb-[100px]">
-            <div className="flex items-start  ">
-              <h2 className="text-7xl  max-sm:text-center max-[832px]:text-4xl max-lg:text-5xl text-white font-semibold  leading-27	">
+          <div className="max-sm:absolute z-50 max-[485px]:right-[-70%] max-[395px]:right-[-75%] max-sm:right-[-50%] max-sm:top-[-90px]  mb-[100px]">
+            <div className="flex items-start max-sm:text-center  ">
+              <h2 className="text-7xl z-20 max-sm:text-center max-[832px]:text-4xl max-lg:text-5xl text-white font-semibold  leading-27	">
                 WE’LL <span className="text-orange-500	">BE LIVE</span> <br />
                 IN <span className="text-orange-500">20</span> DAYS
               </h2>
               <Image
-                className=" ml-3 w-[70px] h-[70px] max-lg:w-[40px] max-lg:h-[40px] max-[832px]:w-[35px] max-[832px]:h-[35px]"
+                className="floating z-20 ml-2 w-[60px] mt-2 h-[60px] max-lg:w-[40px] max-lg:h-[40px] max-[832px]:w-[35px] max-[832px]:h-[35px]"
                 src={rocket}
                 alt="rocket"
               />{" "}
             </div>
 
-            {/* <DynamicForm/> */}
-
             <div className="form-box mt-[35px]  ">
-              <form className="w-[420px] max-lg:w-[350px] max-[832px]:w-[300px] relative flex items-center">
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="w-[420px] max-lg:w-[350px] max-[832px]:w-[300px] relative flex items-center"
+              >
                 <input
                   placeholder="    +998 97-234-21-12"
                   className="p-[10px]  w-full rounded-full"
@@ -54,32 +56,40 @@ export default function Home() {
                 />
                 <button
                   type="submit"
-                  className="p-[10px] absolute right-[0%] rounded-full  bg-orange-500	 text-white "
+                  className="transition duration-500 ease-in-out transform hover:scale-90 active:scale-110  p-[10px] absolute right-[0%] rounded-full  bg-orange-500	 text-white "
                 >
                   Notify Me
+                  <span className="spanLine"></span>
+                  <span className="spanLine"></span>
+                  <span className="spanLine"></span>
+                  <span className="spanLine"></span>
                 </button>
               </form>
             </div>
 
-            <div className="w-full    ">
-              <div className=" absolute right-[10%] bottom-[-35%] icon-box flex gap-5">
-                <Image
-                  src={instagram}
-                  alt="instagram-icon"
-                  className="cursor-pointer w-[48px] h-[48px] max-lg:w-[30px] max-lg:h-[30px] transition duration-700 ease-in-out transform hover:scale-110  hover:bg-orange-500 hover:p-2 rounded-full"
-                />
-                <Image
-                  src={telegram}
-                  className="cursor-pointer w-[48px] h-[48px] max-lg:w-[30px] max-lg:h-[30px]  transition duration-700 transform hover:scale-110  hover:bg-orange-500 hover:p-2 rounded-full"
-                  alt="instagram-icon"
-                />
+            <div className="w-full ">
+              <div className="absolute right-[10%] max-sm:right-[32%] max-sm:top-[470px] bottom-[-35%] icon-box flex gap-5">
+                <Link href="https://www.instagram.com/monoposuz/">
+                  <Image
+                    src={instagram}
+                    alt="instagram-icon"
+                    className="cursor-pointer w-[48px] h-[48px] max-lg:w-[30px] max-lg:h-[30px] transition duration-700 ease-in-out transform   hover:bg-orange-500 p-1 rounded-full"
+                  />
+                </Link>
+                <Link href="https://www.instagram.com/monoposuz/">
+                  <Image
+                    src={telegram}
+                    className="cursor-pointer w-[48px] h-[48px] max-lg:w-[30px] max-lg:h-[30px]   transition duration-700 transform   hover:bg-orange-500 p-1 rounded-full"
+                    alt="instagram-icon"
+                  />
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="w-full z-10">
-        <div className="img-box w-full z-100">
+        <div className="img-box max-md:bg-none w-full z-100">
           <div className="flex  right-[2%] top-10 fixed gap-6  items-center ">
             <div
               onClick={() => setOpen(true)}
