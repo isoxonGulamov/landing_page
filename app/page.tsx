@@ -10,10 +10,32 @@ import "rsuite/dist/rsuite.css";
 import { Drawer, ButtonToolbar, Button, Placeholder } from "rsuite";
 import DrawerComponent from "./components/drawer";
 import confetti from "canvas-confetti";
+import { useState, useEffect } from "react";
 
 import Link from "next/link";
 export default function Home() {
   const [open, setOpen] = React.useState(false);
+    const [days, setDays] = useState(0);
+    const [hours, setHours] = useState(0);
+    const [minutes, setMinutes] = useState(0);
+    const [seconds, setSeconds] = useState(0);
+
+    const deadline = "December, 20, 2023";
+
+    const getTime = () => {
+      const time = Date.parse(deadline) - Date.now();
+        
+      setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
+      setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
+      setMinutes(Math.floor((time / 1000 / 60) % 60));
+      setSeconds(Math.floor((time / 1000) % 60));
+    };
+
+    useEffect(() => {
+      const interval = setInterval(() => getTime(deadline), 1000);
+
+      return () => clearInterval(interval);
+    }, []);
 
   return (
     <main className="flex min-h-screen bg-black items-center justify-between ">
@@ -29,14 +51,20 @@ export default function Home() {
           />
         </div>
         <div className="w-full h-full">
-          <div className="max-sm:absolute z-50 max-[485px]:right-[-70%] max-[395px]:right-[-75%] max-sm:right-[-50%] max-sm:top-[-90px]  mb-[100px]">
-            <div className="flex items-start max-sm:text-center  ">
-              <h2 className="text-7xl z-20 max-sm:text-center max-[832px]:text-4xl max-lg:text-5xl text-white font-semibold  leading-27	">
+          <div className="max-sm:absolute max-[485px]:left-[22%] z-50-[-0%] max-[395px]:right-[-75%] max-sm:left-[50%] max-sm:top-[-90px]  mb-[100px]">
+            <div className="flex items-start max-sm:text-center   ">
+              <h2 className="text-7xl  z-20  max-sm:text-center max-[832px]:text-4xl max-lg:text-5xl text-white font-semibold  leading-27	">
                 WE’LL <span className="text-orange-500	">BE LIVE</span> <br />
-                IN <span className="text-orange-500">20</span> DAYS
+                IN
+                <span className="text-orange-500">
+                  <span> {hours + days * 24}:</span>
+                  <span>{minutes}:</span>
+                  <span>{seconds} </span>
+                </span>
+                DAYS
               </h2>
               <Image
-                className="floating z-20 ml-2 w-[60px] mt-2 h-[60px] max-lg:w-[40px] max-lg:h-[40px] max-[832px]:w-[35px] max-[832px]:h-[35px]"
+                className="floating z-20  max-sm:left-[-10%]  relative left-[-11%] max-xl:left-[-14%]   ml-2 w-[60px] mt-2 h-[60px] max-lg:w-[40px] max-lg:h-[40px] max-[832px]:w-[35px] max-[832px]:h-[35px]"
                 src={rocket}
                 alt="rocket"
               />{" "}
@@ -67,8 +95,8 @@ export default function Home() {
               </form>
             </div>
 
-            <div className="w-full ">
-              <div className="absolute right-[10%] max-sm:right-[32%] max-sm:top-[470px] bottom-[-35%] icon-box flex gap-5">
+            <div className="w-full relative ">
+              <div className="absolute right-[10%] top-[150px] max-sm:right-[40%] max-sm:top-[170px] bottom-[-35%] icon-box flex gap-5">
                 <Link href="https://www.instagram.com/monoposuz/">
                   <Image
                     src={instagram}
